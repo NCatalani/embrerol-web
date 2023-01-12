@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "${FLASK_APPPORT}:5000"
+    volumes:
+      - .:/code
+    env_file:
+      - dsv.env
+    depends_on:
+      - redis
+    expose:
+      - "{FLASK_APPPORT}:5000"
+  redis:
+    image: "redis:alpine"
